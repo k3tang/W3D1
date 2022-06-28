@@ -4,7 +4,7 @@ class Array
       ele = self[i]
       prc.call(ele)
     end
-    return self
+    return self # ssfs
   end
 
   # return_value = [1, 2, 3].my_each do |num|
