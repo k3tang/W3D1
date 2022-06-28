@@ -80,9 +80,9 @@ class Array
     
     (0...self.length).each do |i|
       subarray = []
-      subarray << self[i] # subarray << 1 
+      subarray << self[i]
       arrs.my_each do |arr|
-        subarray << arr[i] #
+        subarray << arr[i]
       end 
       newarray << subarray
     end 
@@ -91,21 +91,63 @@ class Array
 
 
   def my_rotate(num = 1)
-    newarray = []
-    (0...sel)
+    new_arr = []
+    (0...self.length).each do |i|
+        ele = self[i]
+          new_idx = (i + num) % self.length
+          newele = self[new_idx]
+          new_arr << newele
+    end 
+    return new_arr
+  end
+
+  def my_join(str = "")
+    new_str = ""
+   self.each.with_index do |ele, idx|
+      if idx == self.length - 1
+        new_str += ele  
+      else
+        new_str += ele + str
+      end
+    end 
+    return new_str
+  end 
+
+  def my_reverse
+    new_arr = []
+    (0...self.length).reverse_each do |i|
+      ele = self[i]
+      new_arr << ele
+    end
+    return new_arr
+  end
+
+
+
 end
 
 
 
-a = [ 4, 5, 6 ]
-b = [ 7, 8, 9 ]
-p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
-p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+# a = [ 4, 5, 6 ]
+# b = [ 7, 8, 9 ]
+# p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
 
-c = [10, 11, 12]
-d = [13, 14, 15]
-p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
 
 
+# a = ["a", "b", "c", "d"]
+# p a.my_rotate         #=> ["b", "c", "d", "a"]
+# p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
+# a = [ "a", "b", "c", "d" ]
+# p a.my_join         # => "abcd"
+# p a.my_join("$")    # => "a$b$c$d"
+
+p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+p[ 1 ].my_reverse               #=> [1]
